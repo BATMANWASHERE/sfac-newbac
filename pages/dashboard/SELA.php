@@ -10,39 +10,19 @@ include '../../includes/session.php';
 
 <?php
 
-if (isset($_GET['BEED'])) {
-    $courseEnrollee_id = $_GET['BEED'];
-    $course_name = "Elementary Education";
+if (isset($_GET['course_display'])) {
+    $courseEnrollee_id = $_GET['course_display'];
     
-} elseif (isset($_GET['BSED-Filipino'])) {
-    $courseEnrollee_id = $_GET['BSED-Filipino'];
-    $course_name = "Secondary Education - Filipino";
-    
-} elseif (isset($_GET['BSED-Math'])) {
-    $courseEnrollee_id = $_GET['BSED-Math'];
-    $course_name = "Secondary Education - Math";
-    
-} elseif (isset($_GET['BSED-English'])) {
-    $courseEnrollee_id = $_GET['BSED-English'];
-    $course_name = "Secondary Education - English";
-    
-} elseif (isset($_GET['BSED-SS'])) {
-    $courseEnrollee_id = $_GET['BSED-SS'];
-    $course_name = "Secondary Education - Social Studies";
-    
-} elseif (isset($_GET['BSED-Science'])) {
-    $courseEnrollee_id = $_GET['BSED-Science'];
-    $course_name = "Secondary Education - Science";
-    
-} elseif (isset($_GET['BA-Psych'])) {
-    $courseEnrollee_id = $_GET['BA-Psych'];
-    $course_name = "BA Psychology";
-    
+    $course_name_fetch = mysqli_query($db, "SELECT * FROM tbl_courses WHERE course_id = '$_GET[course_display]'");
+    while($row2 = mysqli_fetch_array($course_name_fetch)) {
+        $course_name = $row2['course'];
+    }
 } else {
-    $courseEnrollee_id = 20;
-    $course_name = "Teacher Certificate Program";
-    
+    $courseEnrollee_id = 0;
+    $course_name = "";
+
 }
+
 
 ?>
 
@@ -98,7 +78,7 @@ if (isset($_GET['BEED'])) {
 
                                                 echo'
                                                 <div class="col col-sm-auto">
-                                                    <button class="btn btn-icon btn-3 btn-dark" value="'.$displayEDUcourses['course_id'].'" name="'.$displayEDUcourses['course_abv'].'">
+                                                    <button class="btn btn-icon btn-3 btn-dark" value="'.$displayEDUcourses['course_id'].'" name="course_display">
                                                         <span class="btn-inner--icon"><i class="fas fa-laptop"></i></span>
                                                         <span class="btn-inner--text">'.$displayEDUcourses['course_abv'].'</span>
                                                         <p class="text-sm text-nowrap mb-0">

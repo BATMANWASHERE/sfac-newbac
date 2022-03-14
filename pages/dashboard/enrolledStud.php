@@ -34,8 +34,7 @@ include '../../includes/session.php';
                                 <div class="col text-end">
                                         <div class="row">
                                             <?php
-                                            $CScourses = mysqli_query($db, "SELECT * FROM tbl_courses WHERE department_id = 3");
-                                            while ($displayCScourses = mysqli_fetch_array($CScourses)) {
+                                            
 
                                                 $countTotal = mysqli_query($db, "SELECT COUNT(sy_id) FROM tbl_schoolyears WHERE remark = 'Approved' AND sem_id = '$_SESSION[S]' AND ay_id = '$_SESSION[AC]' ") or die($db->error);
                                                 $actualCountTotal = mysqli_fetch_array($countTotal);
@@ -62,7 +61,7 @@ include '../../includes/session.php';
                                                     
                                                 </div>
                                                 ';
-                                            }
+                                            
  
                                             ?>
                                         </div>

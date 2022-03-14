@@ -10,18 +10,17 @@ include '../../includes/session.php';
 
 <?php
 
-if (isset($_GET['BSBA-FM'])) {
-    $courseEnrollee_id = $_GET['BSBA-FM'];
-    $course_name = "Financial Management";
- 
-} elseif (isset($_GET['BSBA-OM'])) {
-    $courseEnrollee_id = $_GET['BSBA-OM'];
-    $course_name = "Operations Management";
-  
+if (isset($_GET['course_display'])) {
+    $courseEnrollee_id = $_GET['course_display'];
+    
+    $course_name_fetch = mysqli_query($db, "SELECT * FROM tbl_courses WHERE course_id = '$_GET[course_display]'");
+    while($row2 = mysqli_fetch_array($course_name_fetch)) {
+        $course_name = $row2['course'];
+    }
 } else {
-    $courseEnrollee_id = 2;
-    $course_name = "Marketing Management";
-   
+    $courseEnrollee_id = 0;
+    $course_name = "";
+
 }
 // PUSH NA
 ?>
@@ -78,7 +77,7 @@ if (isset($_GET['BSBA-FM'])) {
 
                                                 echo'
                                                 <div class="col col-sm-auto">
-                                                    <button class="btn btn-icon btn-3 btn-dark" value="'.$displayBAcourses['course_id'].'" name="'.$displayBAcourses['course_abv'].'">
+                                                    <button class="btn btn-icon btn-3 btn-dark" value="'.$displayBAcourses['course_id'].'" name="course_display">
                                                         <span class="btn-inner--icon"><i class="fas fa-laptop"></i></span>
                                                         <span class="btn-inner--text">'.$displayBAcourses['course_abv'].'</span>
                                                         <p class="text-sm text-nowrap mb-0">

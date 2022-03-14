@@ -160,7 +160,7 @@ include '../../includes/session.php';
                                                 </ul>
                                             </div>
                                         </td>
-                                    </tr>s
+                                    </tr>
                                     <!-- END ROWS -->
                                     <?php }
                                     ?>
